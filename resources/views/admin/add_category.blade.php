@@ -22,21 +22,30 @@
 							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
 						</div> -->
 					</div>
-					<div class="box-content">
-						<form class="form-horizontal" action="" method="post">
+                     <p class="alert alert-success">
+                     	<?php
+                         $message=Session::get('message');
+                         if($message) {
+                         	echo $message;
+                         	Session::put('message', null);
+                         }
+                     	?>
+                     </p>
+                     <div class="box-content">
+						<form class="form-horizontal" action="{{ url('/save-category') }}" method="post">
 							{{ csrf_field() }}
 						  <fieldset>
 							<div class="control-group">
 							  <label class="control-label" for="date01">Category Name:</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge" id="category_name">
+								<input type="text" class="input-xlarge" name="category_name" required="">
 							  </div>
 							</div>
 
 							<div class="control-group">
 							  <label class="control-label" for="fileInput">Category Description:</label>
 							  <div class="controls">
-								<textarea class="cleditor" id="textarea2" rows="3"></textarea>
+								<textarea class="cleditor" name="category_description" rows="3" required=""></textarea>
 							  </div>
 							</div>  
 

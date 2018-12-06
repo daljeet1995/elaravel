@@ -36,8 +36,10 @@ Route::get('/dashboard', 'AdminController@show_dashboard');
 Route::post('/admin-dashboard', 'AdminController@dashboard');
 
 
-// category related route
+// category related route 
 Route::get('/add-category', 'CategoryController@index');
+Route::get('/all-category', 'CategoryController@all_category');
+Route::post('/save-category', 'CategoryController@save_category');
 
 
 
