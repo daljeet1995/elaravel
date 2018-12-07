@@ -44,4 +44,84 @@ class CategoryController extends Controller
 
         return Redirect::to('/add-category');
     }
+
+    public function unactive_category($category_id)
+    {
+       DB::table('tbl_category')
+          ->where('category_id',$category_id)
+          ->update(['publication_status' => 0 ]);
+          Session::put('message','Category Unactive Successfully !!');
+          return Redirect::to('/all-category');
+    }
+
+    public function active_category($category_id)
+    {
+       DB::table('tbl_category')
+          ->where('category_id',$category_id)
+          ->update(['publication_status' => 1]);
+          Session::put('message','Category Activated Successfully !!');
+          return Redirect::to('/all-category');
+    }
+
+     public function edit_category($category_id)
+        {
+          // Session::put('message','Category Activated Successfully !!');
+           $category_info=DB::table('tbl_category')
+                             ->where('category_id',$category_id)
+                             ->first();
+
+           $category_info=view('admin.edit_category')
+                   ->with('category_info', $category_info);
+           return view('admin.admin_layout')
+                   ->with('admin.edit_category',$category_info);    
+
+          // return view('admin.edit_category');
+        }
+
+      public function update_category(Request $request,$category_id)
+        {
+          // echo $category_id; 
+          $data=array();
+          $data['category_name']=$request->category_name;
+          $data['category_description']=$request->category_description;
+
+          DB::table('tbl_category')
+               ->where('category_id',$category_id)
+               ->update($data);
+         Session::get('message', 'Category update Successfully !!');  
+         return Redirect::to('/all-category'); 
+        }
+
+        public function delete_category($category_id)
+        {
+          DB::table('tbl_category')
+             ->where('category_id',$category_id)
+             ->delete();
+
+          Session::get('message', 'Category Deleted Successfully !');  
+          return Redirect::to('/all-category');  
+
+        }
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

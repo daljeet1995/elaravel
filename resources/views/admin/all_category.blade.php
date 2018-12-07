@@ -8,6 +8,15 @@
 				</li>
 				<li><a href="#">Tables</a></li>
 			</ul>
+			<p class="alert-success">
+                <?php
+                  $message=Session::get('message');
+                  if($message) {
+                      echo $message;
+                      Session::put('message', null);
+                  }
+                ?>
+            </p>
 
 			<div class="row-fluid sortable">		
 				<div class="box span12">
@@ -43,19 +52,19 @@
 
 								<td class="center">
                                    @if($v_category->publication_status==1)
-									<a class="btn btn-danger" href="#">
+									<a class="btn btn-danger" href="{{ URL::to('/unactive_category/'.$v_category->category_id) }}">
 										<i class="halflings-icon white thumbs-down"></i>  
 									</a>
 									@else
-                                       <a class="btn btn-success" href="#">
+                                       <a class="btn btn-success" href="{{ URL::to('/active_category/'.$v_category->category_id) }}">
 										 <i class="halflings-icon white thumbs-up"></i>  
 									   </a>
 									@endif
 
-									<a class="btn btn-info" href="#">
+									<a class="btn btn-info" href="{{ URL::to('/edit_category/'.$v_category->category_id) }}">
 										<i class="halflings-icon white edit"></i>  
 									</a>
-									<a class="btn btn-danger" href="#">
+									<a class="btn btn-danger" href="{{ URL::to('/delete_category/'.$v_category->category_id) }}" id="delete">
 										<i class="halflings-icon white trash"></i> 
 									</a>
 								</td>
