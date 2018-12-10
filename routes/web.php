@@ -48,6 +48,42 @@ Route::get('/unactive_category/{category_id}', 'CategoryController@unactive_cate
 Route::get('/active_category/{category_id}', 'CategoryController@active_category');
 
 
+//manufacture or brands 
+Route::get('/add-manufacture', 'ManufactureController@index'); 
+Route::post('/save-manufacture', 'ManufactureController@save_manufacture');
+Route::get('/all-manufacture', 'ManufactureController@all_manufacture');
+Route::get('/delete_manufacture/{manufacture_id}', 'ManufactureController@delete_manufacture');
+Route::get('/edit_manufacture/{manufacture_id}', 'ManufactureController@edit_manufacture');
+Route::post('/update_manufacture/{manufacture_id}', 'ManufactureController@update_manufacture');
+
+Route::get('/unactive_manufacture/{manufacture_id}', 'ManufactureController@unactive_manufacture');
+Route::get('/active_manufacture/{manufacture_id}', 'ManufactureController@active_manufacture');
+
+// products routes are here
+Route::get('/add-product', 'ProductController@index');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

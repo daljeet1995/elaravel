@@ -7,6 +7,7 @@ use DB;
 use App\Http\Requests;
 use Session;
 use Illuminate\support\Facades\Redirect;
+session_start();
 
 class CategoryController extends Controller
 {
