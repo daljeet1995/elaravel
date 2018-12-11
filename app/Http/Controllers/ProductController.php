@@ -9,11 +9,34 @@ use Session;
 use Illuminate\support\Facades\Redirect;
 session_start();
 
-class ProductController extends Controller
+class ProductController extends Controller  
 {
     public function index() {
        return view('admin.add_product');
     } 
+
+
+    public function all_product()  
+    {
+      $all_product_info=DB::table('tbl_products')
+                       ->join('tbl_category','tbl_products.category_id','=','tbl_category.category_id')
+                       ->join('tbl_manufacture','tbl_products.manufacture_id','=','tbl_manufacture.manufacture_id')
+                       ->select('tbl_products.*','tbl_category.category_name','tbl_manufacture.manufacture_name')
+                       ->get();
+
+              // echo "<pre>";
+              // print_r($all_product_info);
+       	   	  // echo "</pre>";
+       	   	  // exit();                 
+
+
+      $manage_product=view('admin.all_product')
+               ->with('all_product_info', $all_product_info);
+
+      return view('admin.admin_layout')
+               ->with('admin.all_product',$manage_product);
+    } 
+
 
     public function save_product(Request $request) {
       $data=array();
@@ -54,6 +77,35 @@ class ProductController extends Controller
        	   	  return Redirect::to('/add-product');
      
     } 
+
+    public function unactive_product($product_id)
+    {
+       DB::table('tbl_products')
+          ->where('product_id',$product_id)
+          ->update(['publication_status' => 0 ]);
+          Session::put('message','Product Unactive Successfully !!');
+          return Redirect::to('/all-product');
+    }
+
+    public function active_product($product_id)
+    {
+       DB::table('tbl_products')
+          ->where('product_id',$product_id)
+          ->update(['publication_status' => 1]);
+          Session::put('message','Product Activated Successfully !!');
+          return Redirect::to('/all-product');
+    }
+
+    public function delete_product($product_id)
+        {
+          DB::table('tbl_products')
+             ->where('product_id',$product_id)
+             ->delete();
+
+          Session::get('message', 'Product Deleted Successfully !');  
+          return Redirect::to('/all-product');  
+
+        }
 }
 
 
