@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 12, 2018 at 01:47 PM
+-- Generation Time: Dec 14, 2018 at 02:26 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -43,7 +43,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2018_12_06_055753_create_tbl_category_table', 2),
 (3, '2018_12_07_132100_create_manufacture_table', 3),
 (4, '2018_12_10_110540_create_tbl_products_table', 4),
-(5, '2018_12_12_081715_create_tbl_slider_table', 5);
+(5, '2018_12_12_081715_create_tbl_slider_table', 5),
+(6, '2018_12_14_061754_create_tbl_customer_table', 6),
+(7, '2018_12_14_080620_create_tbl_shipping_table', 7);
 
 -- --------------------------------------------------------
 
@@ -97,6 +99,31 @@ INSERT INTO `tbl_category` (`category_id`, `category_name`, `category_descriptio
 (7, 'Laptops', 'Laptops Products', 1, NULL, NULL),
 (8, 'Cloths', '<font face=\"Arial, Verdana\"><span style=\"font-size: 13.3333px;\">Cloths Product</span></font>', 1, NULL, NULL),
 (9, 'Furniture', 'Furniture', 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_customer`
+--
+
+CREATE TABLE `tbl_customer` (
+  `customer_id` int(10) UNSIGNED NOT NULL,
+  `customer_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customer_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mobile_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_customer`
+--
+
+INSERT INTO `tbl_customer` (`customer_id`, `customer_name`, `customer_email`, `password`, `mobile_number`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'admin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '9871407469', NULL, NULL),
+(2, 'daljeet', 'daljeet@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '9876543212', NULL, NULL),
+(3, 'test', 'test@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '9999999999', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -168,6 +195,42 @@ INSERT INTO `tbl_products` (`product_id`, `product_name`, `category_id`, `manufa
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_shipping`
+--
+
+CREATE TABLE `tbl_shipping` (
+  `shipping_id` int(10) UNSIGNED NOT NULL,
+  `shipping_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shipping_first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shipping_last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shipping_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shipping_mobile_number` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shipping_city` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_shipping`
+--
+
+INSERT INTO `tbl_shipping` (`shipping_id`, `shipping_email`, `shipping_first_name`, `shipping_last_name`, `shipping_address`, `shipping_mobile_number`, `shipping_city`, `created_at`, `updated_at`) VALUES
+(1, 'sdsff@gmail.com', 'sfsfsd', 'sdd', 'sdsf', '99888778', 'dgfdfdf', NULL, NULL),
+(2, 'daljeet@gmail.com', 'daljeet', 'singh', 'delhi', '9871407469', 'delhi', NULL, NULL),
+(3, 'technical@gmail.com', 'sfsd', 'dsfdsf', 'ssdf', '123133123', 'asdasdad', NULL, NULL),
+(4, 'technical@gmail.com', 'sdsd', 'sdfs', 'sdfd', '1111122223333', 'dsfsdfsf', NULL, NULL),
+(5, 'nanak@gmail.com', 'saff', 'ssa', 'dfadd', '9998887776', 'delhi', NULL, NULL),
+(6, 'nanak@gmail.com', 'saff', 'ssa', 'dfadd', '9998887776', 'delhi', NULL, NULL),
+(7, 'nanak@gmail.com', 'saff', 'ssa', 'dfadd', '9998887776', 'delhi', NULL, NULL),
+(8, 'nanak@gmail.com', 'saff', 'ssa', 'dfadd', '9998887776', 'delhi', NULL, NULL),
+(9, 'technical@gmail.com', 'dfdas', 'fsdfsds', 'dsfsd', 'dssdfs', 'dsfsdfs', NULL, NULL),
+(10, 'technical@gmail.com', 'dssdfs', 'dsfdsf', 'sdfsd', 'dfsdfs', 'sdfsdfs', NULL, NULL),
+(11, 'technical@gmail.com', 'dfs', 'sdfsd', 'fsd', 'sdfsd', 'sddsfsdf', NULL, NULL),
+(12, 'technical@gmail.com', 'dssdfds', 'sdfdfdss', 'sfsfsd', 'sdfsdfs', 'sdsdf', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_slider`
 --
 
@@ -184,12 +247,9 @@ CREATE TABLE `tbl_slider` (
 --
 
 INSERT INTO `tbl_slider` (`slider_id`, `slider_image`, `publication_status`, `created_at`, `updated_at`) VALUES
-(2, 'slider/FGuJDawMWwJ64pmDbUHv.png', '0', NULL, NULL),
-(5, 'slider/9AFnRLmlAC3CPhH2LxHr.jpg', '0', NULL, NULL),
-(7, 'slider/iO7MhJVxwJMx0yptImnG.jpg', '1', NULL, NULL),
 (8, 'slider/hfJUpUbt5bhaMejm9YP9.jpg', '1', NULL, NULL),
-(9, 'slider/JM2EvtaKmA6sHpusYwqq.jpg', '1', NULL, NULL),
-(10, 'slider/39JHkVlmcHUqMok2GpzI.jpg', '1', NULL, NULL);
+(11, 'slider/yirQXZM6VxHtsvLmeIhk.jpg', '1', NULL, NULL),
+(12, 'slider/OTAJAJTxJqgSDmQEmxgt.jpg', '1', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -214,6 +274,12 @@ ALTER TABLE `tbl_category`
   ADD PRIMARY KEY (`category_id`);
 
 --
+-- Indexes for table `tbl_customer`
+--
+ALTER TABLE `tbl_customer`
+  ADD PRIMARY KEY (`customer_id`);
+
+--
 -- Indexes for table `tbl_manufacture`
 --
 ALTER TABLE `tbl_manufacture`
@@ -224,6 +290,12 @@ ALTER TABLE `tbl_manufacture`
 --
 ALTER TABLE `tbl_products`
   ADD PRIMARY KEY (`product_id`);
+
+--
+-- Indexes for table `tbl_shipping`
+--
+ALTER TABLE `tbl_shipping`
+  ADD PRIMARY KEY (`shipping_id`);
 
 --
 -- Indexes for table `tbl_slider`
@@ -239,7 +311,7 @@ ALTER TABLE `tbl_slider`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_admin`
@@ -254,6 +326,12 @@ ALTER TABLE `tbl_category`
   MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `tbl_customer`
+--
+ALTER TABLE `tbl_customer`
+  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `tbl_manufacture`
 --
 ALTER TABLE `tbl_manufacture`
@@ -266,10 +344,16 @@ ALTER TABLE `tbl_products`
   MODIFY `product_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `tbl_shipping`
+--
+ALTER TABLE `tbl_shipping`
+  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `tbl_slider`
 --
 ALTER TABLE `tbl_slider`
-  MODIFY `slider_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `slider_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

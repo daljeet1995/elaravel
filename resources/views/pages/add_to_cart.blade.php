@@ -84,7 +84,14 @@
 							<li>Total <span>₹{{ Cart::total() }}</span></li>
 						</ul>
 							<a class="btn btn-default update" href="">Update</a>
-							<a class="btn btn-default check_out" href="">Check Out</a>
+
+                            <?php $customer_id=Session::get('customer_id'); ?>
+							<?php if($customer_id != NULL) {?>
+                                           <li><a href="{{ URL::to('/checkout') }}"><i class="btn btn-default update"></i> Checkout</a></li>
+                            <?php }else{?>
+                                        <li><a class="btn btn-default check_out" href="{{ URL::to('/login-check') }}"><i class="fa fa-crosshairs"></i> Check out</a></li>
+                            <?php }?>  
+							<!-- <a class="btn btn-default check_out" href="{{ URL::to('/login-check') }}">Check Out</a> -->
 					</div>
 				</div>
 			</div>
